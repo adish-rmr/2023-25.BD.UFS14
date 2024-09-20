@@ -10,3 +10,8 @@ def validate_wrapper(instance, schema):
         return True
     except:
         return False
+
+def test_snapshot():
+    snapshot.snapshot_dir = 'snapshot'
+    prova = func(6)
+    
