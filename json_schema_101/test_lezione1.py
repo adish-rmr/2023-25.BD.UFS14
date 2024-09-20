@@ -12,8 +12,16 @@ def validate_wrapper(instance, schema):
     except:
         return False
 
-def test_snapshot():
+frutti = """
+frutta, prezzo, kg
+mele, 1, 2
+pere, 2, 3
+banane, 2, 4
+ananas, 2, 3
+"""
+
+def test_snapshot(snapshot):
     snapshot.snapshot_dir = 'snapshot'
-    prova = func(6)
-    prova_stringa = str(prova)
-    snapshot.assert_match(prova_stringa, "output.txt")
+    snapshot.assert_match(frutti, "output.txt")
+
+
