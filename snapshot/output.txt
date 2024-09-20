@@ -1,0 +1,5 @@
+frutta, prezzo, kg
+mele, 1, 2
+pere, 2, 3
+banane, 2, 4
+ananas, 2, 3

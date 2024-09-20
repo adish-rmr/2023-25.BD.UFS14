@@ -12,8 +12,7 @@ def validate_wrapper(instance, schema):
     except:
         return False
 
-frutti = """
-frutta, prezzo, kg
+frutti = """frutta, prezzo, kg
 mele, 1, 2
 pere, 2, 3
 banane, 2, 4
@@ -23,5 +22,3 @@ ananas, 2, 3
 def test_snapshot(snapshot):
     snapshot.snapshot_dir = 'snapshot'
     snapshot.assert_match(frutti, "output.txt")
-
-
