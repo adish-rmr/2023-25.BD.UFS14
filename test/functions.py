@@ -9,7 +9,7 @@ from pymongo import MongoClient
 
 def open_data():
     try:
-        with open("./data/ingredient.pkl", "rb") as pickle_file:
+        with open("/workspaces/2023-25.BD.UFS14/data/ingredient.pkl", "rb") as pickle_file:
             ingredient = pickle.load(pickle_file)
     except Exception as e:
         with open("./data/cir_rep.html", encoding="utf8") as cir:
