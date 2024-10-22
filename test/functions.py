@@ -12,7 +12,7 @@ def open_data():
         with open("/workspaces/2023-25.BD.UFS14/data/ingredient.pkl", "rb") as pickle_file:
             ingredient = pickle.load(pickle_file)
     except Exception as e:
-        with open("./data/cir_rep.html", encoding="utf8") as cir:
+        with open("/workspaces/2023-25.BD.UFS14/data/cir_rep.html", encoding="utf8") as cir:
             soup = BeautifulSoup(cir, 'html.parser')
 
         table = soup.find('table', class_='table')
@@ -23,3 +23,60 @@ def open_data():
             url = link['href']
             ingredient[name] = url
     return ingredient
+
+x  = {
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome",
+    "definitions": {
+        "Welcome": {
+            "type": "object",
+            "additionalProperties": False,
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ID"
+                },
+                "ingrediente": {
+                    "type": "string"
+                },
+                "testo": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "https"
+                    ]
+                }
+            },
+            "required": [
+                "_id",
+                "ingrediente",
+                "link",
+                "testo"
+            ],
+            "title": "Welcome"
+        },
+        "ID": {
+            "type": "object",
+            "additionalProperties": False,
+            "properties": {
+                "$oid": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "$oid"
+            ],
+            "title": "ID"
+        }
+    }
+}
+
+schema = {
+    "type" : "object",
+    "properties" : {
+        "price" : {"type" : "number"},
+        "name" : {"type" : "string"},
+    },
+}
