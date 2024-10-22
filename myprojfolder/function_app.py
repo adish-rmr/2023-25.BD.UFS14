@@ -1,3 +1,4 @@
+
 import azure.functions as func
 import datetime
 import json
@@ -9,8 +10,9 @@ app = func.FunctionApp()
 def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    cognome = req.params.get('cognome')
     name = req.params.get('name')
+    cognome = req.params.get('cognome')
+
     if not name:
         try:
             req_body = req.get_json()
@@ -23,7 +25,9 @@ def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
         if cognome:
             return func.HttpResponse(f"Hello, {name} {cognome}. This HTTP triggered function executed successfully.")
         else:
-            return func.HttpResponse(
-             "Ciao Alexa, come va?",
+            return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+    else:
+        return func.HttpResponse(
+             "AHAHAH.",
              status_code=200
         )
