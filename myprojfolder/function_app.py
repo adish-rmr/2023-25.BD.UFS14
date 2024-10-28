@@ -3,31 +3,23 @@ import azure.functions as func
 import datetime
 import json
 import logging
+import pymongo
 
 app = func.FunctionApp()
 
 @app.route(route="MyHttpTrigger", auth_level=func.AuthLevel.ANONYMOUS)
 def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    nome = req.params.get('nome')
 
-    name = req.params.get('name')
-    cognome = req.params.get('cognome')
+    uri = "mongodb+srv://giorgio2006:TWoA7kZsvL30k6Ua@cluster0563.wr9rvs7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0563"
+    client = pymongo.MongoClient(uri)
+    db = client.ingredients
+    cir = db.noael
+    document = cir.find_one({'ingrediente': nome})
+    if document:
+        return func.HttpResponse(document['testo'])
 
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
 
-    if name:
-        if cognome:
-            return func.HttpResponse(f"Hello, {name} {cognome}. This HTTP triggered function executed successfully.")
-        else:
-            return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    else:
-        return func.HttpResponse(
-             "AHAHAH.",
-             status_code=200
-        )
+        
+
+    
